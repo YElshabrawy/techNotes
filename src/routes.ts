@@ -5,6 +5,7 @@ import cors from 'cors';
 import corsOptions from './config/corsOptions';
 
 import indexRouter from './routers/indexRouter';
+import userRouter from './routers/userRouter';
 
 export default (app: express.Application) => {
     app.use(cors(corsOptions));
@@ -14,6 +15,7 @@ export default (app: express.Application) => {
 
     // Routes
     app.use('/', indexRouter);
+    app.use('/users', userRouter);
 
     // 404 Requests
     app.all('*', (req, res) => {
