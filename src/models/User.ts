@@ -1,5 +1,14 @@
 import mongoose from 'mongoose';
 
+export interface IUser {
+    username: String;
+    password: String;
+    roles: Array<String>;
+    active: Boolean;
+}
+
+export interface IUserModel extends IUser, mongoose.Document {} // to get id and version
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -21,4 +30,4 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model<IUserModel>('User', userSchema);
