@@ -171,8 +171,7 @@ export class UserController {
                 return res.status(404).json({ message: 'User not found' });
 
             const notes = await Note.findOne({ user: id }).lean().exec();
-            //@ts-ignore
-            if (notes?.length)
+            if (notes)
                 return res
                     .status(400)
                     .json({ message: 'User has notes, delete notes first' });
